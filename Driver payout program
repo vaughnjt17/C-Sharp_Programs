@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace WorkDriverMath
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //start of coding
+
+            Console.Write("Please input total sales for the night: ");
+            string userTSales = Console.ReadLine();
+            double TSales = Convert.ToDouble(userTSales);
+            double NCommission = (double)(TSales * 0.04);
+            NCommission = Math.Round(NCommission, 2);
+            Console.WriteLine("This night's commission is $" + NCommission);
+            string YESNO = "Yes";
+            // Lists Declaration
+            List<double> ReceiptList = new List<double> { };
+            List<int> CashList = new List<int> { };
+            List<double> CheckList = new List<double> { };
+            // Loop Begins
+            while(YESNO == "yes" || YESNO == "Yes")
+            {
+                Console.WriteLine("Cash, Card, or Check? ");
+                string CCC = Console.ReadLine();
+                //card IF
+                if(CCC == "card" || CCC == "Card")
+                {
+                    Console.Write("Input receipt toal: ");
+                    string ActiveVar = Console.ReadLine();
+                    double AddVar = Convert.ToDouble(ActiveVar);
+                    Math.Round(AddVar, 2);
+                    ReceiptList.Add(AddVar);                 
+                };
+                //Check IF
+                if (CCC == "Check" || CCC == "check")
+                {
+                    Console.Write("Input Check toal: ");
+                    string ActiveVar = Console.ReadLine();
+                    double AddVar = Convert.ToDouble(ActiveVar);
+                    Math.Round(AddVar, 2);
+                    CheckList.Add(AddVar);
+                }
+                //Cash IF
+                if (CCC == "cash" || CCC == "Cash")
+                {
+                    CashList.Add(1);
+                }
+                Console.Write("Continue inputing receipts? ");
+                YESNO = Console.ReadLine();
+            }
+            double RegisterOut = ((ReceiptList.Sum() + CheckList.Sum()) + NCommission - TSales);
+            Math.Round(RegisterOut, 2);
+            if (RegisterOut > 0)
+            {
+                Console.WriteLine("The Register owes you " + RegisterOut);
+            }
+            else 
+            {
+                Console.WriteLine("You owe the Register " + RegisterOut);
+            }
+            Console.WriteLine("Total number of deliveries: " + (ReceiptList.Count + CashList.Count + CheckList.Count));
+            Console.WriteLine("You should have " + CheckList.Count + " checks and " + CashList.Count + " cash tickets");
+            Console.Write("Do you want to see all of your tickets? ");
+            String Endnote = Console.ReadLine();
+            if (Endnote == "yes" || Endnote == "Yes") 
+            {
+                Console.WriteLine("Receipts: " + ReceiptList);
+                Console.WriteLine("Checks: " + CheckList);
+            }
+        }
+    }
+}
