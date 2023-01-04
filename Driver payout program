@@ -31,7 +31,7 @@ namespace WorkDriverMath
                 //card IF
                 if(CCC == "card" || CCC == "Card")
                 {
-                    Console.Write("Input receipt toal: ");
+                    Console.Write("Input receipt total: ");
                     string ActiveVar = Console.ReadLine();
                     double AddVar = Convert.ToDouble(ActiveVar);
                     Math.Round(AddVar, 2);
@@ -40,7 +40,7 @@ namespace WorkDriverMath
                 //Check IF
                 if (CCC == "Check" || CCC == "check")
                 {
-                    Console.Write("Input Check toal: ");
+                    Console.Write("Input Check total: ");
                     string ActiveVar = Console.ReadLine();
                     double AddVar = Convert.ToDouble(ActiveVar);
                     Math.Round(AddVar, 2);
@@ -70,9 +70,18 @@ namespace WorkDriverMath
             String Endnote = Console.ReadLine();
             if (Endnote == "yes" || Endnote == "Yes") 
             {
-                Console.WriteLine("Receipts: " + ReceiptList);
-                Console.WriteLine("Checks: " + CheckList);
+                Console.WriteLine("Receipts: ");
+                foreach (var readReceipts in ReceiptList)
+                {
+                    Console.WriteLine("$" + readReceipts);
+                }
+                Console.WriteLine("Checks: ");
+                foreach (var readChecks in CheckList)
+                {
+                    Console.WriteLine("$" + readChecks);
+                }
             }
         }
     }
 }
+
